@@ -2,6 +2,7 @@ mod diff;
 mod util;
 
 use std::env;
+use std::io::Error;
 use std::process::exit;
 
 use diff::diff;
@@ -16,11 +17,11 @@ fn main() {
             let file_2 = &args[2];
 
             let content_1 = get_file_content(file_1).unwrap_or_else(|err| {
-                println!("diffrs: {}: {}", file_1, err.to_string());
+                print_file_err(err, file_1);
                 exit(2);
             });
             let content_2 = get_file_content(file_2).unwrap_or_else(|err| {
-                println!("diffrs: {}: {}", file_2, err.to_string());
+                print_file_err(err, file_2);
                 exit(2);
             });
 
@@ -50,4 +51,8 @@ fn main() {
 fn print_usage() {
     println!("usage: diffrs <file_1> <file_2>");
     println!("       diffrs -w <string_1> <string_2>");
+}
+
+fn print_file_err(err: Error, file_name: &String) {
+    eprintln!("diffrs: Error reading {}: {}", file_name, err.to_string());
 }
