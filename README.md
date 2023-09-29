@@ -19,7 +19,11 @@ cargo build --release
 cargo run --release -- examples/kitten.txt examples/sitting.txt
 ```
 
-Create a symlink or copy the executable to a directory available in $PATH to use `diffrs` systemwide.
+To use `diffrs` as command, create a symlink or copy the executable to $PATH.
 ```bash
 sudo cp target/release/diffrs /usr/local/bin
 ```
+## Project goals
+- [ ] Add line-oriented format
+- [ ] Support hunks
+- [ ] String comparisons from CLI
