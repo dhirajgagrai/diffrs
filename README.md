@@ -15,7 +15,7 @@ diffrs -w <string_1> <string_2>
 ```
 
 ## Building and Installation
-To get started first install [Rust](https://www.rust-lang.org/tools/install).
+To get started, first install [Rust](https://www.rust-lang.org/tools/install), and then run the following commands:
 ```bash
 git clone https://github.com/dhirajgagrai/diffrs.git
 cd diffrs 
@@ -35,6 +35,6 @@ sudo cp target/release/diffrs /usr/local/bin
 ## Project Goals
 - [ ] Add line-oriented format
 - [ ] Support hunks
-- [ ] String comparisons from CLI
+- [x] String comparisons from CLI
 
 Feel free to contribute, report issues, or provide feedback to help improve the project.
