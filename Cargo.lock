@@ -29,7 +29,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "diffr"
+name = "diffrs"
 version = "0.1.0"
 dependencies = [
  "colored",

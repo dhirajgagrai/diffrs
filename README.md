@@ -1,16 +1,16 @@
-# diffr
-A diff tool built with Rust using longest common subsequence algorithm.
+# diffrs
+A diff tool built using longest common subsequence algorithm.
 
 ## Usage
 ```bash
-diffr <file_1> <file_2>
+diffrs <file_1> <file_2>
 ```
 
 ## Build
 Install [Rust](https://www.rust-lang.org/tools/install) and build using Cargo.
 ```bash
-git clone https://github.com/dhirajgagrai/diffr.git
-cd diffr 
+git clone https://github.com/dhirajgagrai/diffrs.git
+cd diffrs 
 
 # Compile
 cargo build --release
@@ -19,7 +19,7 @@ cargo build --release
 cargo run --release -- examples/kitten.txt examples/sitting.txt
 ```
 
-Create a symlink or copy the executable to a directory available in $PATH to use `diffr` systemwide.
+Create a symlink or copy the executable to a directory available in $PATH to use `diffrs` systemwide.
 ```bash
-sudo cp target/release/diffr /usr/local/bin
+sudo cp target/release/diffrs /usr/local/bin
 ```

@@ -82,7 +82,7 @@ fn main() {
     let args: Vec<String> = env::args().collect();
 
     if args.len().ne(&3) {
-        println!("usage: diffr <file_1> <file_2>");
+        println!("usage: diffrs <file_1> <file_2>");
         exit(1);
     }
 
@@ -90,11 +90,11 @@ fn main() {
     let file_2 = &args[2];
 
     let content_1 = get_file_content(file_1).unwrap_or_else(|err| {
-        println!("diffr: {}: {}", file_1, err.to_string());
+        println!("diffrs: {}: {}", file_1, err.to_string());
         exit(2);
     });
     let content_2 = get_file_content(file_2).unwrap_or_else(|err| {
-        println!("diffr: {}: {}", file_2, err.to_string());
+        println!("diffrs: {}: {}", file_2, err.to_string());
         exit(2);
     });
 
