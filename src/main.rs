@@ -1,10 +1,11 @@
+mod util;
+
 use std::cmp;
 use std::env;
 use std::process::exit;
 
 use colored::*;
 
-mod util;
 use util::get_file_content;
 
 #[derive(Debug)]
@@ -13,11 +14,12 @@ enum DiffSymbol {
     Delete,
 }
 
-#[derive(Debug)]
+// Tracks the last symbol that was used
 struct DiffTrace {
     symbol: Option<DiffSymbol>,
 }
 
+// Generate new symbols depending on the last used symbol
 impl DiffTrace {
     fn close(&mut self) -> String {
         match self.symbol {
@@ -73,7 +75,6 @@ impl DiffColor {
             DiffColor::Red => ch.to_string().red().to_string(),
             DiffColor::Green => ch.to_string().green().to_string(),
         }
-        
     }
 }
 
@@ -109,6 +110,7 @@ fn diff_char(data_1: &String, data_2: &String) -> String {
     let n = v.len();
     let mut lcs = vec![vec![0; n + 1]; m + 1];
 
+    // LCS algorithm
     for r in 0..m + 1 {
         lcs[r][n] = 0;
     }
@@ -126,11 +128,14 @@ fn diff_char(data_1: &String, data_2: &String) -> String {
         }
     }
 
+    // Initialize variables for traceback
     let mut r = 0;
     let mut c = 0;
     let mut diff = "".to_string();
     let mut diff_symbol = DiffTrace { symbol: None };
 
+    // Start traceback from column = 0 & row = 0
+    // Traceback will stop if either column or row limit is reached
     while r < m && c < n {
         if u[r].eq(&v[c]) {
             diff.push_str(diff_symbol.close().as_ref());
@@ -148,6 +153,7 @@ fn diff_char(data_1: &String, data_2: &String) -> String {
         }
     }
 
+    // Traceback remaining contents if limit was reached above
     while r < m {
         diff.push_str(diff_symbol.delete().as_ref());
         diff.push_str(DiffColor::Red.get_string(&u[r]).as_ref());
