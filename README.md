@@ -1,5 +1,5 @@
 # diffrs
-A diff tool built using longest common subsequence algorithm.
+A diff tool that employs the longest common subsequence algorithm to compare files and strings.
 
 ## Usage
 
@@ -9,15 +9,13 @@ diffrs <file_1> <file_2>
 ```
 
 ### Strings
-Use -w flag to compare strings.
-
+To compare two strings, add the -w flag:
 ```bash
 diffrs -w <string_1> <string_2>
 ```
 
-## Build
-Install [Rust](https://www.rust-lang.org/tools/install) and build using Cargo.
-
+## Building and Installation
+To get started first install [Rust](https://www.rust-lang.org/tools/install).
 ```bash
 git clone https://github.com/dhirajgagrai/diffrs.git
 cd diffrs 
@@ -29,12 +27,14 @@ cargo build --release
 cargo run --release -- examples/kitten.txt examples/sitting.txt
 ```
 
-To use `diffrs` as command, create a symlink or copy the executable to $PATH.
+To use `diffrs` command, create a symlink or copy the executable to a directory in your $PATH.
 ```bash
 sudo cp target/release/diffrs /usr/local/bin
 ```
 
-## Project goals
+## Project Goals
 - [ ] Add line-oriented format
 - [ ] Support hunks
 - [ ] String comparisons from CLI
+
+Feel free to contribute, report issues, or provide feedback to help improve the project.
