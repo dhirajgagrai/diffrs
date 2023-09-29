@@ -10,10 +10,9 @@ pub fn get_file_path(file: &String) -> Result<PathBuf, Error> {
 pub fn get_file_content(file: &String) -> Result<String, Error> {
     let path = get_file_path(file)?;
 
-    let mut file = File::open(path).expect("Unable to open the file");
+    let mut file = File::open(path)?;
     let mut content = String::new();
-    file.read_to_string(&mut content)
-        .expect("Unable to read the file");
+    file.read_to_string(&mut content)?;
 
     Ok(content)
 }

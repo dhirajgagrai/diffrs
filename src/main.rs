@@ -54,5 +54,5 @@ fn print_usage() {
 }
 
 fn print_file_err(err: Error, file_name: &String) {
-    eprintln!("diffrs: Error reading {}: {}", file_name, err.to_string());
+    eprintln!("diffrs: {}: {}", file_name, err.to_string());
 }
