@@ -16,7 +16,7 @@ cd diffr
 cargo build --release
 
 # Run
-cargo run --release -- <file_1> <file_2>
+cargo run --release -- examples/kitten.txt examples/sitting.txt
 ```
 
 Create a symlink or copy the executable to a directory available in $PATH to use `diffr` systemwide.
