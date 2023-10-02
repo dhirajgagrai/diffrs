@@ -4,7 +4,7 @@ use std::path::PathBuf;
 
 pub fn get_file_path(file: &String) -> Result<PathBuf, Error> {
     let dir = PathBuf::from(file);
-    fs::canonicalize(&dir)
+    return fs::canonicalize(&dir);
 }
 
 pub fn get_file_content(file: &String) -> Result<String, Error> {
@@ -14,5 +14,5 @@ pub fn get_file_content(file: &String) -> Result<String, Error> {
     let mut content = String::new();
     file.read_to_string(&mut content)?;
 
-    Ok(content)
+    return Ok(content);
 }

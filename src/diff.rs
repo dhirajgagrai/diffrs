@@ -13,17 +13,17 @@ struct DiffTrace {
     symbol: Option<DiffSymbol>,
 }
 
-// Generate new symbols depending on the last used symbol
+// Insert symbols depending on the last used symbol
 impl DiffTrace {
     fn close(&mut self) -> String {
         match self.symbol {
             Some(DiffSymbol::Insert) => {
                 self.symbol = None;
-                "+}".green().to_string()
+                return "+}".green().to_string();
             }
             Some(DiffSymbol::Delete) => {
                 self.symbol = None;
-                "-]".red().to_string()
+                return "-]".red().to_string();
             }
             None => "".to_string(),
         }
@@ -33,12 +33,12 @@ impl DiffTrace {
         match self.symbol {
             Some(DiffSymbol::Insert) => {
                 self.symbol = Some(DiffSymbol::Delete);
-                format!("{}{}", "+}".green(), "[-".red())
+                return format!("{}{}", "+}".green(), "[-".red());
             }
             Some(DiffSymbol::Delete) => "".to_string(),
             None => {
                 self.symbol = Some(DiffSymbol::Delete);
-                "[-".red().to_string()
+                return "[-".red().to_string();
             }
         }
     }
@@ -48,11 +48,11 @@ impl DiffTrace {
             Some(DiffSymbol::Insert) => "".to_string(),
             Some(DiffSymbol::Delete) => {
                 self.symbol = Some(DiffSymbol::Insert);
-                format!("{}{}", "-]".red(), "{+".green())
+                return format!("{}{}", "-]".red(), "{+".green());
             }
             None => {
                 self.symbol = Some(DiffSymbol::Insert);
-                "{+".green().to_string()
+                return "{+".green().to_string();
             }
         }
     }
@@ -137,5 +137,5 @@ pub fn diff(string_1: &String, string_2: &String) -> String {
 
     diff.push_str(diff_symbol.close().as_ref());
 
-    diff
+    return diff;
 }
