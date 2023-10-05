@@ -105,9 +105,16 @@ pub fn diff(string_1: &String, string_2: &String) -> String {
     let mut diff_symbol = DiffTrace { symbol: None };
 
     // Start traceback from column = 0 & row = 0
-    // Traceback will stop if either column or row limit is reached
-    while r < m && c < n {
-        if u[r].eq(&v[c]) {
+    while r < m || c < n {
+        if r < m && !(c < n) {
+            diff.push_str(diff_symbol.delete().as_ref());
+            diff.push_str(DiffColor::Red.get_string(&u[r]).as_ref());
+            r += 1;
+        } else if c < n && !(r < m) {
+            diff.push_str(diff_symbol.insert().as_ref());
+            diff.push_str(DiffColor::Green.get_string(&v[c]).as_ref());
+            c += 1;
+        } else if u[r].eq(&v[c]) {
             diff.push_str(diff_symbol.close().as_ref());
             diff.push(u[r]);
             r += 1;
@@ -116,23 +123,11 @@ pub fn diff(string_1: &String, string_2: &String) -> String {
             diff.push_str(diff_symbol.delete().as_ref());
             diff.push_str(DiffColor::Red.get_string(&u[r]).as_ref());
             r += 1;
-        } else {
+        } else if lcs[r + 1][c].lt(&lcs[r][c + 1]) {
             diff.push_str(diff_symbol.insert().as_ref());
             diff.push_str(DiffColor::Green.get_string(&v[c]).as_ref());
             c += 1;
         }
-    }
-
-    // Traceback remaining contents if limit was reached
-    while r < m {
-        diff.push_str(diff_symbol.delete().as_ref());
-        diff.push_str(DiffColor::Red.get_string(&u[r]).as_ref());
-        r += 1;
-    }
-    while c < n {
-        diff.push_str(diff_symbol.insert().as_ref());
-        diff.push_str(DiffColor::Green.get_string(&v[c]).as_ref());
-        c += 1;
     }
 
     diff.push_str(diff_symbol.close().as_ref());
