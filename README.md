@@ -24,7 +24,7 @@ cd diffrs
 cargo build --release
 
 # Run
-cargo run --release -- examples/file1.txt examples/file2.txt
+cargo run --release -- examples/file_1.txt examples/file_2.txt
 ```
 
 To use `diffrs` command, create a symlink or copy the executable to a directory in your $PATH.
